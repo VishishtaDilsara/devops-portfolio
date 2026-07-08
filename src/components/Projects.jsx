@@ -26,7 +26,7 @@ const projectsData = [
     description: 'Built a GitOps-driven Online Boutique microservices deployment on AWS EKS with automated CI/CD, secure traffic exposure, monitoring, logging, and Slack alerts.',
     tech: ['AWS EKS', 'Terraform', 'Kubernetes', 'Docker', 'GitHub Actions', 'ArgoCD', 'Prometheus', 'Grafana', 'ELK Stack'],
     // Replace below with your actual URL or leave as is
-    github: 'https://github.com/VishishtaDilsara/Production-Grade-GitOps-Driven-Microservices-Demo',
+    github: 'https://github.com/VishishtaDilsara/Production-Grade_GitOps-Driven_Microservices-Demo.git',
     demo: 'https://www.linkedin.com/posts/vishishta-dilsara-14059a348_devops-gitops-kubernetes-activity-7475779394368622592-YQBX?utm_source=li_share&utm_content=feedcontent&utm_medium=g_dt_web&utm_campaign=copy', 
     category: 'GitOps & Orchestration',
     previewType: 'gitops',
