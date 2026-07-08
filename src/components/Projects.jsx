@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, GitBranch, Terminal, Layers, Activity, DollarSign, Cpu, Network, ShieldCheck } from 'lucide-react';
+import { ExternalLink, GitBranch, Terminal, Activity, DollarSign, Network } from 'lucide-react';
 import { GithubIcon } from './CustomIcons';
 import gitopsArch from '../assets/gitops_architecture.png';
 import cicdArch from '../assets/cicd_architecture.png';

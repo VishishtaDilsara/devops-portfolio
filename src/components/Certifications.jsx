@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Award, Shield, Cloud, Terminal, Compass, Layers } from 'lucide-react';
+import { ExternalLink, Award, Shield, Cloud, Layers } from 'lucide-react';
 import awsCcpBadge from '../assets/aws_certified_cloud_practitioner.png';
 import kcnaBadge from '../assets/kcna_badge.png';
 import mslaBadge from '../assets/microsoft_student_ambassador.png';

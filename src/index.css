@@ -105,3 +105,14 @@ body {
 .cyber-pulse-dot {
   animation: cyber-pulse 2s infinite ease-in-out;
 }
+
+/* Blinking cursor for typewriter effect */
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: cursor-blink 0.8s step-end infinite;
+}

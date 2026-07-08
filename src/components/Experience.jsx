@@ -14,8 +14,8 @@ const workExperience = [
     role: 'Cloud Engineer',
     icon: Cpu,
     color: 'from-emerald-400 to-teal-500',
-    description: 'AWS Cloud Quest - Practitioner Badge | Aviatrix Multicloud Certified Badge | FinOps Certified Practitioner Badge',
-    tags: ['AWS Cloud Quest', 'Aviatrix Multicloud', 'FinOps']
+    description: 'AWS Certified Cloud Practitioner | Aviatrix Multicloud Certified Badge | FinOps Certified Practitioner Badge',
+    tags: ['AWS Certified Cloud Practitioner', 'Aviatrix Multicloud', 'FinOps']
   },
   {
     role: 'Open Source Contributor',

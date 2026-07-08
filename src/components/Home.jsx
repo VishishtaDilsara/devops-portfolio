@@ -4,6 +4,12 @@ import { ArrowRight, Download, Send } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon, BehanceIcon } from './CustomIcons';
 import profileImg from '../assets/profile.jpg';
 
+const roles = [
+  'DevOps Engineer',
+  'Cloud Engineer',
+  'SRE Enthusiast',
+  'Open Source Contributor'
+];
 
 export default function Home() {
   const containerVariants = {
@@ -32,6 +38,40 @@ export default function Home() {
       target.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+
+  const [roleIndex, setRoleIndex] = React.useState(0);
+  const [displayText, setDisplayText] = React.useState('');
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    let timer;
+    const fullText = roles[roleIndex];
+
+    // Determine speed
+    let speed = isDeleting ? 40 : 80;
+
+    if (!isDeleting && displayText === fullText) {
+      // Pause at full text before deleting
+      speed = 1800;
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, speed);
+    } else if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    } else {
+      timer = setTimeout(() => {
+        setDisplayText(
+          isDeleting
+            ? fullText.substring(0, displayText.length - 1)
+            : fullText.substring(0, displayText.length + 1)
+        );
+      }, speed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, roleIndex]);
 
   return (
     <section 
@@ -66,14 +106,15 @@ export default function Home() {
 
             <motion.h2 
               variants={itemVariants} 
-              className="text-lg sm:text-xl md:text-2xl font-semibold font-mono text-cyan-400/90 leading-relaxed border-l-2 border-cyan-500/50 pl-4"
+              className="text-lg sm:text-xl md:text-2xl font-semibold font-mono text-cyan-400/90 leading-relaxed border-l-2 border-cyan-500/50 pl-4 min-h-[36px] sm:min-h-[40px] md:min-h-[44px] flex items-center"
             >
-              DevOps Engineer | Cloud Engineer | SRE Enthusiast | Open Source Contributor
+              <span>{displayText}</span>
+              <span className="w-[3px] h-[1.1em] bg-cyan-400 ml-1.5 cursor-blink inline-block" />
             </motion.h2>
 
             <motion.p 
               variants={itemVariants} 
-              className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed font-light text-justify"
+              className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed font-light text-left sm:text-justify"
             >
               I am a final year undergraduate reading B.Comp(Hons.) in Software Engineering at the University of Sri Jayewardenepura. I am passionate about DevOps, Cloud Computing, Site Reliability Engineering, and Cloud Infrastructure. I enjoy building scalable applications, automating infrastructure, creating CI/CD pipelines, deploying cloud-native systems, and contributing to open-source projects.
             </motion.p>
@@ -183,17 +224,14 @@ export default function Home() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 50, damping: 15, delay: 0.3 }}
-              className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group"
+              className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96"
             >
-              {/* Outer Cyber Glow Ring */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500 via-violet-500 to-fuchsia-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-              
               {/* Inner Decorative Box */}
               <div className="relative w-full h-full rounded-2xl overflow-hidden glass-panel border border-slate-700/60 flex items-center justify-center p-2">
                 <img 
                   src={profileImg} 
                   alt="Vishishta Dilsara" 
-                  className="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover rounded-xl"
                 />
 
                 {/* Tech elements overlay */}
