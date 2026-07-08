@@ -13,7 +13,21 @@ import aviatrixBadge from '../assets/aviatrix_badge.png';
 
 
 const certificationsData = [
-  // 1. AWS Certified Cloud Practitioner
+  // 1. Kubernetes and Cloud Native Associate — KCNA
+  {
+    id: 'kcna',
+    name: 'Kubernetes and Cloud Native Associate (KCNA)',
+    issuer: 'The Linux Foundation / CNCF',
+    date: 'Jul 7, 2026',
+    // Replace the link below with your actual verification URL
+    verifyUrl: 'https://www.credly.com/badges/c167faae-f140-4573-a703-9cac78508ead/public_url',
+    badgeColor: 'from-blue-600/20 to-cyan-500/20 border-blue-500/30',
+    iconColor: 'text-blue-400',
+    icon: SteeringWheelIcon, // Defined below
+    badgeText: 'CNCF',
+    image: kcnaBadge
+  },
+  // 2. AWS Certified Cloud Practitioner
   {
     id: 'aws-ccp',
     name: 'AWS Certified Cloud Practitioner',
@@ -27,20 +41,6 @@ const certificationsData = [
     icon: Cloud,
     badgeText: 'AWS',
     image: awsCcpBadge
-  },
-  // 2. Kubernetes and Cloud Native Associate — KCNA
-  {
-    id: 'kcna',
-    name: 'Kubernetes and Cloud Native Associate (KCNA)',
-    issuer: 'The Linux Foundation / CNCF',
-    date: 'Jul 7, 2026',
-    // Replace the link below with your actual verification URL
-    verifyUrl: 'https://www.credly.com/badges/c167faae-f140-4573-a703-9cac78508ead/public_url',
-    badgeColor: 'from-blue-600/20 to-cyan-500/20 border-blue-500/30',
-    iconColor: 'text-blue-400',
-    icon: SteeringWheelIcon, // Defined below
-    badgeText: 'CNCF',
-    image: kcnaBadge
   },
   // 3. Associate Microsoft Student Ambassador
   {
