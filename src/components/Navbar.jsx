@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X, Terminal, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -12,7 +12,7 @@ const navLinks = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
@@ -98,6 +98,30 @@ export default function Navbar() {
                 </a>
               );
             })}
+
+            {/* Desktop Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="ml-4 p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-800 transition-all cursor-pointer flex items-center justify-center relative overflow-hidden w-9 h-9"
+              aria-label="Toggle theme"
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'dark' ? 0 : 180, scale: theme === 'dark' ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute flex items-center justify-center"
+              >
+                <Moon size={18} />
+              </motion.div>
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'light' ? 0 : -180, scale: theme === 'light' ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute flex items-center justify-center"
+              >
+                <Sun size={18} className="text-amber-500" />
+              </motion.div>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -141,6 +165,33 @@ export default function Navbar() {
                   </a>
                 );
               })}
+
+              {/* Mobile Theme Toggle Row */}
+              <div className="px-4 py-3 flex items-center justify-between border-t border-slate-900 mt-2">
+                <span className="text-sm font-medium text-slate-400">Switch Theme</span>
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-800 transition-all cursor-pointer flex items-center justify-center relative overflow-hidden w-9 h-9"
+                  aria-label="Toggle theme"
+                >
+                  <motion.div
+                    initial={false}
+                    animate={{ rotate: theme === 'dark' ? 0 : 180, scale: theme === 'dark' ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute flex items-center justify-center"
+                  >
+                    <Moon size={18} />
+                  </motion.div>
+                  <motion.div
+                    initial={false}
+                    animate={{ rotate: theme === 'light' ? 0 : -180, scale: theme === 'light' ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute flex items-center justify-center"
+                  >
+                    <Sun size={18} className="text-amber-500" />
+                  </motion.div>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
