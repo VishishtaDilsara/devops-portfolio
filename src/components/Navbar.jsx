@@ -124,8 +124,30 @@ export default function Navbar({ theme, toggleTheme }) {
             </button>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
+          {/* Mobile Menu Toggle & Theme Changer */}
+          <div className="md:hidden flex items-center space-x-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-800 transition-all cursor-pointer flex items-center justify-center relative overflow-hidden w-9 h-9"
+              aria-label="Toggle theme"
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'dark' ? 0 : 180, scale: theme === 'dark' ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute flex items-center justify-center"
+              >
+                <Moon size={18} />
+              </motion.div>
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'light' ? 0 : -180, scale: theme === 'light' ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute flex items-center justify-center"
+              >
+                <Sun size={18} className="text-amber-500" />
+              </motion.div>
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-900/60 focus:outline-none border border-transparent hover:border-slate-800"
@@ -166,32 +188,6 @@ export default function Navbar({ theme, toggleTheme }) {
                 );
               })}
 
-              {/* Mobile Theme Toggle Row */}
-              <div className="px-4 py-3 flex items-center justify-between border-t border-slate-900 mt-2">
-                <span className="text-sm font-medium text-slate-400">Switch Theme</span>
-                <button
-                  onClick={toggleTheme}
-                  className="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-800 transition-all cursor-pointer flex items-center justify-center relative overflow-hidden w-9 h-9"
-                  aria-label="Toggle theme"
-                >
-                  <motion.div
-                    initial={false}
-                    animate={{ rotate: theme === 'dark' ? 0 : 180, scale: theme === 'dark' ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute flex items-center justify-center"
-                  >
-                    <Moon size={18} />
-                  </motion.div>
-                  <motion.div
-                    initial={false}
-                    animate={{ rotate: theme === 'light' ? 0 : -180, scale: theme === 'light' ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute flex items-center justify-center"
-                  >
-                    <Sun size={18} className="text-amber-500" />
-                  </motion.div>
-                </button>
-              </div>
             </div>
           </motion.div>
         )}
