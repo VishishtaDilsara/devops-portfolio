@@ -14,7 +14,7 @@ const workExperience = [
     role: 'Cloud Engineer',
     icon: Cpu,
     color: 'from-emerald-400 to-teal-500',
-    description: 'AWS Certified Cloud Practitioner | Aviatrix Multicloud Certified Badge | FinOps Certified Practitioner Badge',
+    description: 'AWS Certified Cloud Practitioner | Google Cloud Certified - Professional Cloud DevOps Engineer | Aviatrix Multicloud Certified Badge | FinOps Certified Practitioner Badge',
     tags: ['AWS Certified Cloud Practitioner', 'Aviatrix Multicloud', 'FinOps']
   },
   {
@@ -76,7 +76,7 @@ export default function Experience() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-violet-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Heading */}
         <div className="text-center space-y-3 mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-100">
@@ -92,9 +92,8 @@ export default function Experience() {
           <div className="flex p-1.5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-md relative">
             <button
               onClick={() => setActiveTab('work')}
-              className={`flex items-center space-x-2 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 relative z-10 cursor-pointer ${
-                activeTab === 'work' ? 'text-slate-950' : 'text-slate-400 hover:text-slate-200'
-              }`}
+              className={`flex items-center space-x-2 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 relative z-10 cursor-pointer ${activeTab === 'work' ? 'text-slate-950' : 'text-slate-400 hover:text-slate-200'
+                }`}
             >
               <Briefcase size={16} />
               <span>Work Experience</span>
@@ -108,9 +107,8 @@ export default function Experience() {
             </button>
             <button
               onClick={() => setActiveTab('education')}
-              className={`flex items-center space-x-2 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 relative z-10 cursor-pointer ${
-                activeTab === 'education' ? 'text-slate-950' : 'text-slate-400 hover:text-slate-200'
-              }`}
+              className={`flex items-center space-x-2 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 relative z-10 cursor-pointer ${activeTab === 'education' ? 'text-slate-950' : 'text-slate-400 hover:text-slate-200'
+                }`}
             >
               <GraduationCap size={16} />
               <span>Education</span>
@@ -140,8 +138,8 @@ export default function Experience() {
                 {workExperience.map((item, idx) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div 
-                      key={item.role} 
+                    <motion.div
+                      key={item.role}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: '-100px' }}
@@ -167,8 +165,8 @@ export default function Experience() {
 
                         <div className="flex flex-wrap gap-2 pt-2">
                           {item.tags.map((tag) => (
-                            <span 
-                              key={tag} 
+                            <span
+                              key={tag}
                               className="text-[11px] font-mono font-medium px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyan-400/80"
                             >
                               {tag}
@@ -190,7 +188,7 @@ export default function Experience() {
                 className="relative border-l border-slate-800 pl-6 sm:pl-8 space-y-12 ml-4"
               >
                 {educationHistory.map((item, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={item.degree}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}

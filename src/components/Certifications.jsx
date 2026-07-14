@@ -6,6 +6,7 @@ import kcnaBadge from '../assets/kcna_badge.png';
 import mslaBadge from '../assets/microsoft_student_ambassador.png';
 import finopsBadge from '../assets/finops_certified_practitioner.png';
 import aviatrixBadge from '../assets/aviatrix_badge.png';
+import gcpDevopsBadge from '../assets/gcp_devops_badge.png';
 
 
 
@@ -13,7 +14,20 @@ import aviatrixBadge from '../assets/aviatrix_badge.png';
 
 
 const certificationsData = [
-  // 1. Kubernetes and Cloud Native Associate — KCNA
+  // 1. Google Cloud Certified - Professional Cloud DevOps Engineer
+  {
+    id: 'gcp-devops',
+    name: 'Professional Cloud DevOps Engineer Certified',
+    issuer: 'Google Cloud',
+    date: 'Jul 13, 2026',
+    verifyUrl: 'https://www.credly.com/badges/4456d3b6-b98c-4433-bade-b12f2153b1e9/public_url',
+    badgeColor: 'from-blue-500/20 to-yellow-500/20 border-blue-500/30',
+    iconColor: 'text-blue-400',
+    icon: Cloud,
+    badgeText: 'GCP',
+    image: gcpDevopsBadge
+  },
+  // 2. Kubernetes and Cloud Native Associate — KCNA
   {
     id: 'kcna',
     name: 'Kubernetes and Cloud Native Associate (KCNA)',
@@ -27,7 +41,7 @@ const certificationsData = [
     badgeText: 'CNCF',
     image: kcnaBadge
   },
-  // 2. AWS Certified Cloud Practitioner
+  // 3. AWS Certified Cloud Practitioner
   {
     id: 'aws-ccp',
     name: 'AWS Certified Cloud Practitioner',
@@ -42,7 +56,7 @@ const certificationsData = [
     badgeText: 'AWS',
     image: awsCcpBadge
   },
-  // 3. Associate Microsoft Student Ambassador
+  // 4. Associate Microsoft Student Ambassador
   {
     id: 'msla',
     name: 'Associate Microsoft Student Ambassador',
@@ -56,7 +70,7 @@ const certificationsData = [
     image: mslaBadge
   },
 
-  // 4. Aviatrix Multicloud Certified Badge
+  // 5. Aviatrix Multicloud Certified Badge
   {
     id: 'aviatrix',
     name: 'Aviatrix Multicloud Certified Badge',
@@ -70,7 +84,7 @@ const certificationsData = [
     badgeText: 'AVX',
     image: aviatrixBadge
   },
-  // 5. FinOps Certified Practitioner Badge
+  // 6. FinOps Certified Practitioner Badge
   {
     id: 'finops',
     name: 'FinOps Certified Practitioner Badge',
@@ -127,7 +141,7 @@ export default function Certifications() {
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Heading */}
         <div className="text-center space-y-3 mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-100">
@@ -150,8 +164,8 @@ export default function Certifications() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ 
-                    opacity: { duration: 0.2 }, 
+                  transition={{
+                    opacity: { duration: 0.2 },
                     layout: { type: 'spring', stiffness: 250, damping: 25 },
                     delay: showAll ? 0 : index * 0.05
                   }}
@@ -191,7 +205,7 @@ export default function Certifications() {
                     <span className="text-xs font-mono text-slate-500">
                       Date: {cert.date}
                     </span>
-                    
+
                     <a
                       href={cert.verifyUrl}
                       target="_blank"

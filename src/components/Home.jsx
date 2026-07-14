@@ -39,6 +39,34 @@ export default function Home() {
     }
   };
 
+  const downloadCV = async () => {
+    try {
+      const response = await fetch("/Vishishta_Dilsara_CV.pdf");
+
+      if (!response.ok) {
+        throw new Error("CV download failed");
+      }
+
+      const blob = await response.blob();
+      const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+      const fileURL = window.URL.createObjectURL(pdfBlob);
+
+      const link = document.createElement("a");
+      link.href = fileURL;
+      link.download = "Vishishta_Dilsara_CV.pdf";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Delay revocation to ensure the browser processes the download with the correct filename
+      setTimeout(() => {
+        window.URL.revokeObjectURL(fileURL);
+      }, 2000);
+    } catch (error) {
+      console.error("Unable to download CV:", error);
+    }
+  };
 
   const [roleIndex, setRoleIndex] = React.useState(0);
   const [displayText, setDisplayText] = React.useState('');
@@ -74,8 +102,8 @@ export default function Home() {
   }, [displayText, isDeleting, roleIndex]);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-grid-pattern"
     >
       {/* Decorative Gradient Glows */}
@@ -83,7 +111,7 @@ export default function Home() {
       <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -96,35 +124,35 @@ export default function Home() {
               <span className="text-xs font-mono text-cyan-400 tracking-wider">SYSTEM ACTIVE • READY TO BUILD</span>
             </motion.div>
 
-            <motion.h1 
-              variants={itemVariants} 
+            <motion.h1
+              variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100"
             >
               Hi, I'm <br />
               <span className="text-gradient-rainbow">Vishishta Dilsara</span>
             </motion.h1>
 
-            <motion.h2 
-              variants={itemVariants} 
+            <motion.h2
+              variants={itemVariants}
               className="text-lg sm:text-xl md:text-2xl font-semibold font-mono text-cyan-400/90 leading-relaxed border-l-2 border-cyan-500/50 pl-4 min-h-[36px] sm:min-h-[40px] md:min-h-[44px] flex items-center"
             >
               <span>{displayText}</span>
               <span className="w-[3px] h-[1.1em] bg-cyan-400 ml-1.5 cursor-blink inline-block" />
             </motion.h2>
 
-            <motion.p 
-              variants={itemVariants} 
+            <motion.p
+              variants={itemVariants}
               className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed font-light text-left sm:text-justify"
             >
               I am a final year undergraduate reading B.Comp(Hons.) in Software Engineering at the University of Sri Jayewardenepura. I am passionate about DevOps, Cloud Computing, Site Reliability Engineering, and Cloud Infrastructure. I enjoy building scalable applications, automating infrastructure, creating CI/CD pipelines, deploying cloud-native systems, and contributing to open-source projects.
             </motion.p>
 
             {/* CTAs */}
-            <motion.div 
-              variants={itemVariants} 
+            <motion.div
+              variants={itemVariants}
               className="flex flex-wrap gap-4 pt-2"
             >
-              <button 
+              <button
                 onClick={() => handleScrollTo('#projects')}
                 className="group flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-cyan-500/20 cursor-pointer"
               >
@@ -132,7 +160,7 @@ export default function Home() {
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
 
-              <button 
+              <button
                 onClick={() => handleScrollTo('#contact')}
                 className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 font-semibold transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
@@ -140,31 +168,28 @@ export default function Home() {
                 <Send size={16} className="text-cyan-400" />
               </button>
 
-              {/* Download CV: Update the href link below with your actual CV file URL */}
-              <a 
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("CV Download Placeholder: Please replace the href link in src/components/Home.jsx with the absolute URL of your CV PDF.");
-                }}
-                className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-950/60 hover:bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800/40 hover:border-slate-800 font-medium transition-all duration-300 transform hover:-translate-y-0.5"
+              {/* Download CV */}
+              <button
+                type="button"
+                onClick={downloadCV}
+                className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-950/60 hover:bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800/40 hover:border-slate-800 font-medium transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
                 <Download size={16} />
                 <span>Download CV</span>
-              </a>
+              </button>
             </motion.div>
 
             {/* Social Icons */}
-            <motion.div 
-              variants={itemVariants} 
+            <motion.div
+              variants={itemVariants}
               className="flex items-center space-x-3 pt-6 border-t border-slate-900 w-fit"
             >
               <span className="text-xs font-mono text-slate-500 tracking-wider mr-2 uppercase">Connect</span>
-              
+
               {/* GitHub */}
-              <a 
-                href="https://github.com/VishishtaDilsara" 
-                target="_blank" 
+              <a
+                href="https://github.com/VishishtaDilsara"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-lg bg-slate-900/60 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-slate-800/40 hover:border-cyan-500/30 transition-all duration-200"
                 title="GitHub"
@@ -173,9 +198,9 @@ export default function Home() {
               </a>
 
               {/* LinkedIn */}
-              <a 
-                href="https://www.linkedin.com/in/vishishta-dilsara-14059a348/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/vishishta-dilsara-14059a348/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-lg bg-slate-900/60 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-slate-800/40 hover:border-cyan-500/30 transition-all duration-200"
                 title="LinkedIn"
@@ -184,9 +209,9 @@ export default function Home() {
               </a>
 
               {/* Facebook */}
-              <a 
-                href="https://www.facebook.com/vishishta.dilsara?_rdc=2&_rdr#" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/vishishta.dilsara?_rdc=2&_rdr#"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-lg bg-slate-900/60 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-slate-800/40 hover:border-cyan-500/30 transition-all duration-200"
                 title="Facebook"
@@ -195,9 +220,9 @@ export default function Home() {
               </a>
 
               {/* Instagram */}
-              <a 
-                href="https://www.instagram.com/_vish__x___" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/_vish__x___"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-lg bg-slate-900/60 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-slate-800/40 hover:border-cyan-500/30 transition-all duration-200"
                 title="Instagram"
@@ -206,9 +231,9 @@ export default function Home() {
               </a>
 
               {/* Behance */}
-              <a 
-                href="https://www.behance.net/vishishdilsara" 
-                target="_blank" 
+              <a
+                href="https://www.behance.net/vishishdilsara"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-lg bg-slate-900/60 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-slate-800/40 hover:border-cyan-500/30 transition-all duration-200"
                 title="Behance"
@@ -220,7 +245,7 @@ export default function Home() {
 
           {/* Photo Section */}
           <div className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2">
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 50, damping: 15, delay: 0.3 }}
@@ -228,9 +253,9 @@ export default function Home() {
             >
               {/* Inner Decorative Box */}
               <div className="relative w-full h-full rounded-2xl overflow-hidden glass-panel border border-slate-700/60 flex items-center justify-center p-2">
-                <img 
-                  src={profileImg} 
-                  alt="Vishishta Dilsara" 
+                <img
+                  src={profileImg}
+                  alt="Vishishta Dilsara"
                   className="w-full h-full object-cover rounded-xl"
                 />
 
